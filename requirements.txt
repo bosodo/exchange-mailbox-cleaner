@@ -1,0 +1,2 @@
+exchangelib
+docopt-ng
