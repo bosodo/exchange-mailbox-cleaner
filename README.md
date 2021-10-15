@@ -8,7 +8,7 @@ You can also export deleted emails to .eml files. (Default option is hard-delete
 
 **Dependency**
 
-Python 3.6+. Befoure run, install the required dependencies with:
+Python 3.6+. Before run, install the required dependencies with:
 ```
 pip install -r requirements.txt
 ```
