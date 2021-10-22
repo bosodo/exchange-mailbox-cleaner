@@ -1,9 +1,11 @@
 # Exchange mailbox cleaner
 
-Cleanup tool for Microsoft Exchange mailbox (https://github.com/bosodo/exchange-mailbox-cleaner/).
+Cleanup tool for Microsoft Exchange mailbox (https://github.com/bosodo/exchange-mailbox-cleaner/). 
 
 You can use it to delete emails from exchange mailboxes, that are not managed by Outlook, OWA or etc. (e.g. technical e-mail accounts).
-You can also export deleted emails to .eml files. (Default option is hard-delete e-mails).
+Deleted emails can be exported to .eml files. (default option is hard-delete e-mails).
+- `exch-mbox-cleaner.py` based on `exchangelib`, which use Microsoft Exchange Web Services (EWS) to communicate with MS 
+  Exchange server. 
 
 ### Dependency
 
@@ -18,10 +20,12 @@ $ exch-mbox-cleaner.py <exch-server> <user-name> <user-pass> (--inbox | --inbox-
 $ exch-mbox-cleaner.py (-h | --help)
 $ exch-mbox-cleaner.py --version
 ```
+- `<user-name>` - `jan_kowalski` or with domain `jan_kowalski@example.org` depend on your exchange configuration
 ### Examples
 ```
-$ exch-mbox-cleaner.py exchange.example.org jan_kowalski Password! --inbox --days=180 --bckp='./deleted-emails'
-$ exch-mbox-cleaner.py exchange.example.org jan_kowalski Password! --inbox-subdir='Sample subdirectory' --days=180 --bckp='./deleted-emails'
+$ exch-mbox-cleaner.py exchange.example.org jan_kowalski@example.org Password! --inbox --days=180 --bckp='./deleted-emails'
+$ exch-mbox-cleaner.py exchange.example.org jan_kowalski@example.org Password! --inbox-subdir='Sample subdirectory' --days=180 
+--bckp='./deleted-emails'
 ```
 ### Options
 ```
