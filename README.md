@@ -1,6 +1,6 @@
 # Exchange mailbox cleaner
 
-Cleanup tool for Microsoft Exchange mailbox (https://github.com/bosodo/exchange-mailbox-cleaner/). 
+Cleanup tool for Microsoft Exchange mailbox (https://github.com/bosodo/exchange-mailbox-cleaner/).
 
 You can use it to delete emails from exchange mailboxes, that are not managed by Outlook, OWA or etc. (e.g. technical e-mail accounts).
 Deleted emails can be exported to .eml files. (default option is hard-delete e-mails).
