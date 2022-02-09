@@ -7,6 +7,18 @@ Deleted emails can be exported to .eml files. (default option is hard-delete e-m
 - `exch-mbox-cleaner.py` based on `exchangelib`, which use Microsoft Exchange Web Services (EWS) to communicate with MS 
   Exchange server. 
 
+### Options
+```
+-h --help                     Show this screen.
+--version                     Show version.
+--days=<number_days>          Emails more than x days old will be deleted [default: 30]
+--inbox-subdir=<directory>    Subdirectory in INBOX (or select --inbox as root)
+--bckp=DIR                    Location to backup deleted emails (directory must exist!).
+--soft                        Soft-delete (keep a copy in the recoverable items folder).
+--trash                       Move message to the trash folder.
+--dry-run                     Only "dry-run". Run script without deleting emails.
+```
+
 ### Dependency
 
 Python 3.6+. Before run, install the required dependencies with:
@@ -21,20 +33,11 @@ $ exch-mbox-cleaner.py (-h | --help)
 $ exch-mbox-cleaner.py --version
 ```
 - `<user-name>` - `jan_kowalski` or with domain `jan_kowalski@example.org` depend on your exchange configuration
+
 ### Examples
 ```
 $ exch-mbox-cleaner.py exchange.example.org jan_kowalski@example.org Password! --inbox --days=180 --bckp='./deleted-emails'
 $ exch-mbox-cleaner.py exchange.example.org jan_kowalski@example.org Password! --inbox-subdir='Sample subdirectory' --days=180 
 --bckp='./deleted-emails'
 ```
-### Options
-```
--h --help                     Show this screen.
---version                     Show version.
---days=<number_days>          Emails more than x days old will be deleted [default: 30]
---inbox-subdir=<directory>    Subdirectory in INBOX (or select --inbox as root)
---bckp=DIR                    Location to backup deleted emails (directory must exist!).
---soft                        Soft-delete (keep a copy in the recoverable items folder).
---trash                       Move message to the trash folder.
---dry-run                     Only "dry-run". Run script without deleting emails.
-```
+
