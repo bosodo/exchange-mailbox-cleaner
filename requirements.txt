@@ -1,2 +1,2 @@
-exchangelib==4.7.6
+exchangelib==4.9.0
 docopt-ng==0.8.1
