@@ -1,2 +1,2 @@
 exchangelib==5.1.0
-docopt-ng==0.8.1
+docopt-ng==0.9.0
