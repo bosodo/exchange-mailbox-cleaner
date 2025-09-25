@@ -41,3 +41,13 @@ $ exch-mbox-cleaner.py exchange.example.org jan_kowalski@example.org Password! -
 --bckp='./deleted-emails'
 ```
 
+### Docker Usage
+To build the Docker image, run the following command:
+```
+docker build -t exch-mbox-cleaner .
+```
+
+To run the script using the Docker container, use the following command:
+```
+docker run exch-mbox-cleaner <exch-server> <user-name> <user-pass> --inbox --days=180
+```
