@@ -51,3 +51,8 @@ To run the script using the Docker container, use the following command:
 ```
 docker run exch-mbox-cleaner <exch-server> <user-name> <user-pass> --inbox --days=180
 ```
+
+You can also use the pre-built image from Docker Hub:
+```
+docker run bosodo/exchange-mailbox-cleaner <exch-server> <user-name> <user-pass> --inbox --days=180
+```
