@@ -24,6 +24,7 @@ Options:
   --trash                       Move message to the trash folder.
   --dry-run                     Only "dry-run". Run script without deleting emails.
 """
+import os
 from exchangelib import DELEGATE, Account, Credentials, Configuration, UTC_NOW
 from datetime import timedelta
 from docopt import docopt
@@ -73,19 +74,32 @@ def main():
 
     if args['--dry-run'] is False:
         for item in emails:
-            if args['--bckp'] is not None:
-                decoded_item = item.mime_content.decode("utf-8")
-                with open(args['--bckp'] + '/' +
-                          str(item.datetime_created.strftime("%Y-%m-%d-%H%M%S")) + '_' +
-                          ''.join(e for e in item.subject[:25] if e.isalnum()) +
-                          '.eml', 'w') as f:
-                    f.write(decoded_item)
-            if args['--soft']:
-                item.soft_delete()
-            elif args['--trash']:
-                item.move_to_trash()
-            else:
-                item.delete()
+            delete_item = True  # Assume we will delete the item
+
+            if args['--bckp']:
+                if item.mime_content:
+                    try:
+                        decoded_item = item.mime_content.decode("utf-8", "ignore")
+                        subject = item.subject or "no_subject"
+                        sanitized_subject = ''.join(e for e in subject[:25] if e.isalnum())
+                        filename = f"{item.datetime_created.strftime('%Y-%m-%d-%H%M%S')}_{sanitized_subject}.eml"
+                        filepath = os.path.join(args['--bckp'], filename)
+                        with open(filepath, 'w', encoding='utf-8') as f:
+                            f.write(decoded_item)
+                    except Exception as e:
+                        print(f"Warning: Could not back up email with subject '{item.subject}'. Error: {e}")
+                        delete_item = False  # Don't delete if backup failed
+                else:
+                    print(f"Warning: Skipping backup for email with subject '{item.subject}' because its content is missing.")
+                    delete_item = False  # Don't delete if we couldn't back it up
+
+            if delete_item:
+                if args['--soft']:
+                    item.soft_delete()
+                elif args['--trash']:
+                    item.move_to_trash()
+                else:
+                    item.delete()
     else:
         print('Dry-run completed. No email was deleted.')
 
