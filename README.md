@@ -53,6 +53,7 @@ docker run exch-mbox-cleaner <exch-server> <user-name> <user-pass> --inbox --day
 ```
 
 You can also use the pre-built image from Docker Hub:
+- https://hub.docker.com/r/bosodo/exchange-mailbox-cleaner
 ```
 docker run bosodo/exchange-mailbox-cleaner <exch-server> <user-name> <user-pass> --inbox --days=180
 ```
